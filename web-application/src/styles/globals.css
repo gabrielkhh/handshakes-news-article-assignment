@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply transition-colors;
+  }
+
+  :root {
+    --text-primary: #1e293b;  /* Default (light mode) text color */
+    --bg-primary: #ffffff;    /* Default (light mode) background color */
+  }
+
+  .dark {
+    --text-primary: #e5e7eb;  /* Dark mode text color */
+    --bg-primary: #1f2937;    /* Dark mode background color */
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
