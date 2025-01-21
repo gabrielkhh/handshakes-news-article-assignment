@@ -1,22 +1,24 @@
 import { useAppStateContext } from '@/providers/AppStateProvider'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 import { Home, Moon, Sun, Tool } from 'tabler-icons-react'
 
 const Navbar = () => {
     const { themeIsDark, setThemeIsDark } = useAppStateContext();
+    const pathName = usePathname();
 
     return (
-        <nav className="h-14 p-3 bg-white/50 dark:bg-black/50 backdrop-blur-xl sticky top-0 transition-colors duration-200">
-            <div className="flex gap-3 items-center justify-between">
+        <nav className="h-16 flex w-full items-center p-3 bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-xl sticky top-0">
+            <div className="flex w-full gap-3 items-center justify-between">
                 <div className="flex gap-6">
-                    <Link href={"/"} className="flex gap-1 hover: items-center font-medium text-primary">
+                    <Link href={"/"} className={`flex gap-1 hover: items-center font-medium text-primary p-2 rounded-lg ${pathName === "/" ? "bg-orange-400 text-white" : "hover:bg-gray-200 hover:dark:bg-gray-800"}`}>
                         <Home size={18} className="transition-none" />
-                        <span className={`${true ?? ""}`}>Home</span>
+                        <span>Home</span>
                     </Link>
-                    <Link href={"/manage"} className="flex gap-1 items-center font-medium text-primary">
+                    <Link href={"/manage"} className={`flex gap-1 items-center font-medium text-primary p-2 rounded-lg ${pathName.includes("manage") ? "bg-orange-400 text-white" : "hover:bg-gray-200 hover:dark:bg-gray-800"}`}>
                         <Tool size={18} className="transition-none" />
-                        <span className={`${true ?? ""}`}>Manage</span>
+                        <span>Manage</span>
                     </Link>
                 </div>
                 <div>

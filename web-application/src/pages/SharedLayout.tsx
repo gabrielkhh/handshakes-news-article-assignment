@@ -13,9 +13,9 @@ const SharedLayout = ({
   const { themeIsDark } = useAppStateContext()
 
   return (
-    <div className={`${themeIsDark ? "dark" : "light"}`}>
+    <div className={`${themeIsDark ? "dark" : "light"} bg-primary`}>
       <Navbar />
-      <div className="flex flex-col gap-3 px-3 bg-primary">
+      <div className="flex flex-col gap-3 p-3">
         <Component {...pageProps} />
       </div>
       <Footer />
