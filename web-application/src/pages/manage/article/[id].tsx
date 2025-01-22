@@ -32,7 +32,7 @@ const ManageArticle = () => {
 
     return (
         <div className="flex min-h-screen">
-            
+            <div className="bg-gray-200 rounded-lg p-3">TODO</div>
         </div>
     )
 }
