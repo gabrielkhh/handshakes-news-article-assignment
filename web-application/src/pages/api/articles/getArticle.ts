@@ -9,6 +9,10 @@ export default async function handler(
 ) {
     if (req.method === 'GET') {
         try {
+            if (!process.env.DATABASE_NAME || !process.env.DATABASE_COLLECTION) {
+                return res.status(500).json({ success: false, message: 'Unable to proceed further due to misconfigured server' });
+            }
+
             const { id } = req.query;
 
             // Validate the ID format
@@ -17,8 +21,8 @@ export default async function handler(
             }
 
             const mongoDbClient = await client;
-            const db = mongoDbClient.db('news');
-            const collection = db.collection('articles');
+            const db = mongoDbClient.db(process.env.DATABASE_NAME);
+            const collection = db.collection(process.env.DATABASE_COLLECTION);
 
             // Find the document by _id
             const document = await collection.findOne({ _id: new ObjectId(id as string) });

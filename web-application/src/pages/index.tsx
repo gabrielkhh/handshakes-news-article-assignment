@@ -21,10 +21,6 @@ export default function Home() {
     }
   })
 
-  React.useEffect(() => {
-    console.log("articles", articles)
-  })
-
   return (
     <div className={`flex flex-col gap-3 min-h-screen`}>
       <h2 className="font-semibold text-2xl text-primary">View All Articles</h2>

@@ -5,8 +5,11 @@ import useSWR from 'swr'
 import dayjs from 'dayjs'
 import { Pencil } from 'tabler-icons-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const ManageArticles = () => {
+    const router = useRouter();
+    
     const { data: articles, isLoading, error } = useSWR<Article[]>("articles/manage", async () => {
         try {
             const articlesResponse = await axios.get<GetArticlesResponse>("/api/articles");
@@ -103,7 +106,7 @@ const ManageArticles = () => {
                                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <button
                                                         className="font-semibold transition-colors duration-500 text-orange-400 hover:text-orange-500 dark:text-orange-400 dark:hover:text-orange-400 focus:outline-none"
-                                                        onClick={() => { }}
+                                                        onClick={() => {router.push(`/manage/article/${article._id}`)}}
                                                     >
                                                         View more
                                                     </button>

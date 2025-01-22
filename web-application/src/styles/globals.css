@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-  * {
+  /* * {
     @apply transition-colors;
-  }
+  } */
 
   :root {
     --text-primary: #1e293b;  /* Default (light mode) text color */

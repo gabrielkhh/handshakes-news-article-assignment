@@ -23,6 +23,7 @@ export type ArticleFormFields = {
 export type GetArticlesResponse = {
     success: boolean;
     data: Article[];
+    message?: string;
 }
 
 export type GetSingleArticleResponse = {
@@ -33,5 +34,17 @@ export type GetSingleArticleResponse = {
 
 export type CreateArticleResponse = {
     success: boolean;
-    data: NewArticle;
+    data?: NewArticle;
+    message?: string;
+}
+
+export type UpdateArticleResponse = {
+    success: boolean;
+    data?: Article;
+    message?: string;
+}
+
+export type DeleteArticleResponse = {
+    success: boolean;
+    message?: string;
 }

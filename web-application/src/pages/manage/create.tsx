@@ -16,7 +16,6 @@ const CreateArticle = () => {
   } = useForm<ArticleFormFields>()
 
   const onSubmit: SubmitHandler<ArticleFormFields> = async (data) => {
-    console.log(data)
     try {
       const submissionResponse = await axios.post("/api/articles/create", data);
       if (submissionResponse.status === 201 && submissionResponse.data.success) {
