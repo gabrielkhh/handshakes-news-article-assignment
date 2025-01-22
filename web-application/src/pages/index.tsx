@@ -26,7 +26,7 @@ export default function Home() {
   })
 
   return (
-    <div className={`flex flex-col gap-3 h-screen`}>
+    <div className={`flex flex-col gap-3 min-h-screen`}>
       <h2 className="font-semibold text-2xl text-primary">View All Articles</h2>
       <div className="flex flex-col gap-3">
         {isLoading ? (
@@ -43,9 +43,11 @@ export default function Home() {
                 <span className="text-gray-600 dark:text-gray-400">No articles found</span>
               </div>
             )}
-            {articles?.map((article, index) => (
-              <ArticleCard key={index} article={article} />
-            ))}
+            <div className="flex flex-col gap-3 overflow-y-scroll">
+              {articles?.map((article, index) => (
+                <ArticleCard key={index} article={article} />
+              ))}
+            </div>
           </>
         )}
       </div>

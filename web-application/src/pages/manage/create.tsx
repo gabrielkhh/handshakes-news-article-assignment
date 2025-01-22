@@ -1,7 +1,9 @@
 'use client'
 import { ArticleFormFields } from '@/types'
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import toast from 'react-hot-toast';
 import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
 
 const CreateArticle = () => {
@@ -13,12 +15,17 @@ const CreateArticle = () => {
     formState: { errors },
   } = useForm<ArticleFormFields>()
 
-  // const [value, setValue] = useState<DateValueType>({
-  //   startDate: null,
-  //   endDate: null
-  // });
-
-  const onSubmit: SubmitHandler<ArticleFormFields> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<ArticleFormFields> = async (data) => {
+    console.log(data)
+    try {
+      const submissionResponse = await axios.post("/api/articles/create", data);
+      if (submissionResponse.status === 201 && submissionResponse.data.success) {
+        toast.success("Article created successfully!");
+      }
+    } catch (e) {
+      console.error("Error creating article", e);
+    }
+  }
 
   return (
     <div className="flex flex-col gap-5 h-screen">

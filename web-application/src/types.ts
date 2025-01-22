@@ -25,6 +25,12 @@ export type GetArticlesResponse = {
     data: Article[];
 }
 
+export type GetSingleArticleResponse = {
+    success: boolean;
+    data?: Article;
+    message?: string;
+}
+
 export type CreateArticleResponse = {
     success: boolean;
     data: NewArticle;

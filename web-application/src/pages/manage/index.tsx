@@ -117,8 +117,7 @@ const ManageArticles = () => {
                     </div>
                 </div>
             </div>
-
-        </div >
+        </div>
     )
 }
 

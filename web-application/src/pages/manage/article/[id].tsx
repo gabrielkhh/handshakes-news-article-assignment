@@ -1,5 +1,7 @@
 'use client'
 
+import { Article } from '@/types';
+import axios from 'axios';
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/router';
 import React from 'react'
@@ -9,25 +11,29 @@ const ManageArticle = () => {
     const { isReady } = useRouter();
     const params = useParams()
 
-    const { data: article, isLoading, error } = useSWR(isReady ? `/manage/article/${params?.["id"]}` : null, async (url) => {
-        // try {
-        //     const articleResponse = await fetch(url);
-        //     const articleData = await articleResponse.json();
+    const { data: article, isLoading, error } = useSWR<Article | null>(isReady ? `/manage/article/${params?.["id"]}` : null, async () => {
+        try {
+            const articleResponse = await axios.get(`/api/articles/getArticle?id=${params?.["id"]}`)
 
-        //     return articleData;
-        // } catch (e) {
-        //     console.error("Error fetching article", e);
-        //     return null;
-        // }
-        return true
+            if (articleResponse.status === 200) {
+                return articleResponse.data.data
+            } else {
+                return null
+            }
+        } catch (e) {
+            console.error("Error fetching article", e)
+            return null
+        }
     })
 
     React.useEffect(() => {
         console.log("article is", article)
     }, [article])
-    
+
     return (
-        <div>{params?.["id"] ?? 'nth'}</div>
+        <div className="flex min-h-screen">
+            
+        </div>
     )
 }
 

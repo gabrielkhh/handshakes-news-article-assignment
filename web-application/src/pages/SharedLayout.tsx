@@ -1,8 +1,8 @@
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import { useAppStateContext } from '@/providers/AppStateProvider'
-import { AppProps } from 'next/app'
 import React from 'react'
+import { Toaster } from 'react-hot-toast'
 
 const SharedLayout = (props: any) => {
   const { children } = props;
@@ -10,6 +10,7 @@ const SharedLayout = (props: any) => {
 
   return (
     <div className={`${themeIsDark ? "dark" : "light"} bg-primary`}>
+      <Toaster/>
       <Navbar />
       <div className="flex flex-col gap-3 p-3">
         {children}
