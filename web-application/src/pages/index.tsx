@@ -1,27 +1,17 @@
 import ArticleCard from "@/components/ArticleCard";
-import { Article } from "@/types";
+import { Article, GetArticlesResponse } from "@/types";
 import axios from "axios";
-import { Geist, Geist_Mono } from "next/font/google";
+import React from "react";
 import useSWR from "swr";
 import { Loader2 } from "tabler-icons-react";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export default function Home() {
   const { data: articles, isLoading, error } = useSWR<Article[]>("articles", async () => {
     try {
-      const articlesResponse = await axios.get<Article[]>("/api/articles");
+      const articlesResponse = await axios.get<GetArticlesResponse>("/api/articles");
 
       if (articlesResponse.status === 200) {
-        return articlesResponse.data;
+        return articlesResponse.data.data;
       } else {
         return [];
       }
@@ -29,8 +19,12 @@ export default function Home() {
       console.error("Error fetching articles", e);
       return [];
     }
-
   })
+
+  React.useEffect(() => {
+    console.log("articles", articles)
+  })
+
   return (
     <div className={`flex flex-col gap-3 h-screen`}>
       <h2 className="font-semibold text-2xl text-primary">View All Articles</h2>
@@ -43,9 +37,16 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          articles?.map((article, index) => (
-            <ArticleCard key={index} article={article} />
-          ))
+          <>
+            {articles?.length === 0 && (
+              <div className="flex flex-row h-40 w-full items-center justify-around text-center rounded-lg p-3">
+                <span className="text-gray-600 dark:text-gray-400">No articles found</span>
+              </div>
+            )}
+            {articles?.map((article, index) => (
+              <ArticleCard key={index} article={article} />
+            ))}
+          </>
         )}
       </div>
     </div>

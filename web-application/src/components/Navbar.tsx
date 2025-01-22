@@ -11,14 +11,14 @@ const Navbar = () => {
     return (
         <nav className="h-16 flex w-full items-center p-3 bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-xl sticky top-0">
             <div className="flex w-full gap-3 items-center justify-between">
-                <div className="flex gap-6">
+                <div className="flex gap-2 md:gap-3">
                     <Link href={"/"} className={`flex gap-1 hover: items-center font-medium text-primary p-2 rounded-lg ${pathName === "/" ? "bg-orange-400 text-white" : "hover:bg-gray-200 hover:dark:bg-gray-800"}`}>
                         <Home size={18} className="transition-none" />
-                        <span>Home</span>
+                        <span className="hidden md:block">Home</span>
                     </Link>
-                    <Link href={"/manage"} className={`flex gap-1 items-center font-medium text-primary p-2 rounded-lg ${pathName.includes("manage") ? "bg-orange-400 text-white" : "hover:bg-gray-200 hover:dark:bg-gray-800"}`}>
+                    <Link href={"/manage"} className={`flex gap-1 items-center font-medium text-primary p-2 rounded-lg ${pathName?.includes("manage") ? "bg-orange-400 text-white" : "hover:bg-gray-200 hover:dark:bg-gray-800"}`}>
                         <Tool size={18} className="transition-none" />
-                        <span>Manage</span>
+                        <span className="hidden md:block">Manage</span>
                     </Link>
                 </div>
                 <div>
