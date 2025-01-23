@@ -20,3 +20,5 @@ pnpm build && pnpm start
 > As this project is built to connect to a MongoDB database, an existing environment will be provided upon request to any relevant stakeholders
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+This is a deployed version of this project available online, https://handshakes-news-article-assignment.vercel.app/
